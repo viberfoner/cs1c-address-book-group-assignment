@@ -35,12 +35,12 @@ void printPrompt() {
 		"List all contacts",
 		"List contacts by type",
 		"Show info about a contact group",
-		"Add/Remove a contact",
+		"Add a contact",
 		"Update an existing contact",
+		"Remove a contact",
 		"Search by contact name",
 		"Display info about a contact",
 		"Exit"
-
 	};
 
 	cout << "Enter a number to choose one of the following options:" << endl << endl;
