@@ -1,4 +1,4 @@
-#include "contact.h"
+#include "Contact.h"
 
 /*int id;
 std::string firstName;
