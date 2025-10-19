@@ -81,7 +81,7 @@ void printPrompt(vector<Command> &cmdList) {
 
 	cout << endl << "Enter a number to choose one of the following options:" << endl << endl;
 	for (int i = 0; i < cmdList.size(); i++) {
-		cout << i+1 << ") " << cmdList[i].prompt << endl;
+		cout << i+1 << ") " << cmdList[i].prompt << endl << endl;
 	}
 }
 
