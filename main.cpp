@@ -1,6 +1,4 @@
-#include "Contact.cpp"
-#include "ContactList.cpp"
-//#include "AddressBook.cpp"
+#include "AddressBook.cpp"
 
 
 #include <iostream>

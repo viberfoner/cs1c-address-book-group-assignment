@@ -24,7 +24,7 @@ void ContactList::addContact(const Contact& contact)
 // it loops through the vector of contacts to find a contact with the specified ID
 // and if it finds it, it removes that contact from the vector
 // if there is no contact with the id, it should print a message that says its not found
-void ContactList::removeContact(unsigned int id)
+void ContactList::removeContact(int id)
 {
     // use an iterator for the vector
     for (auto it = contacts.begin(); it != contacts.end(); ++it)
@@ -74,7 +74,7 @@ void ContactList::printContactList() const
 // Filter contacts by type and return a new ContactList - it should return 
 //a new ContactList object that contains only the contacts of the specified type
 // by creating a new vector and returning a new ContactList initialized with that vector
-ContactList ContactList::filter(const string& type) const
+ContactList ContactList::filter(const Contact::Type type) const
 {
     // temporary vector to hold the filtered contacts
     vector<Contact> filtered;

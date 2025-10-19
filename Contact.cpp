@@ -72,17 +72,17 @@ std::string Contact::getAddress(){
 std::string Contact::getEmail(){
     return email;
 }
-Contact::Type Contact::getType(){
+Contact::Type Contact::getType() const {
     return type;
 }
-int Contact::getId(){
+int Contact::getId() const {
     return id;
 }
 int Contact::incrementId(){
     idCount += 1;
     return idCount;
 }
-std::string Contact::typeToString(Contact::Type type){
+std::string Contact::typeToString(Contact::Type type) const {
     switch (type){
         case WORK: return "Work";
         case PERSONAL: return "Personal";
@@ -95,7 +95,7 @@ std::string Contact::typeToString(Contact::Type type){
     }
 return "Unknown";
 }
-void Contact::printContact(){
+void Contact::printContact() const {
     std::cout << firstName << " " << lastName << ":" << "\n";
     if (phoneNumber == " " && address == " " && email == " " && type == NONE && tags.empty()){
         std::cout << "No contact information\n\n";
@@ -118,7 +118,7 @@ void Contact::printContact(){
         std::cout << "\n\n";
     } 
 }
-std::string Contact::formatPhoneNumber(){
+std::string Contact::formatPhoneNumber() const {
     if (phoneNumber == " "){
         return "(000) 000-000";
     }
@@ -141,6 +141,6 @@ void Contact::deleteTag(std::string tag){
 std::vector<std::string> Contact::getTags(){
     return tags;
 }
-std::vector<std::string> Contact::getGroups(){
+std::vector<std::string> Contact::getGroups() const {
     return groups;
 }
