@@ -6,6 +6,7 @@
 #include <algorithm>
 
 #include "ContactList.h"
+#include "importExportManager"
 
 using namespace std;
 
