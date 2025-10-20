@@ -57,19 +57,19 @@ void Contact::setEmail(std::string newEmail){
 void Contact::setType(Contact::Type newType){
     type = newType;
 }
-std::string Contact::getFirstName(){
+std::string Contact::getFirstName() const {
     return firstName;
 }
-std::string Contact::getLastName(){
+std::string Contact::getLastName() const {
     return lastName;
 }
-std::string Contact::getPhoneNumber(){
+std::string Contact::getPhoneNumber() const {
     return phoneNumber;
 }
-std::string Contact::getAddress(){
+std::string Contact::getAddress() const {
     return address;
 }
-std::string Contact::getEmail(){
+std::string Contact::getEmail() const {
     return email;
 }
 Contact::Type Contact::getType() const {
@@ -138,7 +138,7 @@ void Contact::deleteTag(std::string tag){
     std::vector<std::string>::iterator toDelete = find(tags.begin(), tags.end(), tag);
     tags.erase(toDelete);
 }
-std::vector<std::string> Contact::getTags(){
+std::vector<std::string> Contact::getTags() const {
     return tags;
 }
 std::vector<std::string> Contact::getGroups() const {

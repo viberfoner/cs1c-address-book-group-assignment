@@ -20,16 +20,16 @@ class Contact{
         void addTag(std::string tag);
         void deleteTag(std::string tag);
         int getId() const;
-        std::string getFirstName();
-        std::string getLastName();
-        std::string getPhoneNumber();
-        std::string getAddress();
-        std::string getEmail();
+        std::string getFirstName() const;
+        std::string getLastName() const;
+        std::string getPhoneNumber() const;
+        std::string getAddress() const;
+        std::string getEmail() const;
         Type getType() const;
         static int incrementId();
         std::string typeToString(Type type) const;
         void printContact() const;
-        std::vector<std::string> getTags();
+        std::vector<std::string> getTags() const;
         std::vector<std::string> getGroups() const;
 
     private:

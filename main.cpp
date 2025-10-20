@@ -2,6 +2,7 @@
 
 
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
 #include <cstdlib>
@@ -26,6 +27,11 @@ void exitProgram();
 
 
 int main() {
+	AddressBook addressBook;
+
+	ifstream inFile;
+	inFile.open("address-book.csv");
+	inFile.close();
 
 	int response;
 	

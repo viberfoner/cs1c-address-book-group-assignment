@@ -3,11 +3,10 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
-using namespace std;
 
-// Forward declaration
-enum class ContactType;
-class Contact;
+#include "Contact.h"
+
+using namespace std;
 
 // =============================================
 // CLASS: ImportExportManager
@@ -90,12 +89,12 @@ private:
         getline(ss, typeStr, ',');
 
         unsigned int id = stoi(idStr);
-        ContactType type = stringToType(typeStr);
+        Contact::Type type = stringToType(typeStr);
 
         // Example constructor:
         // Contact(unsigned int id, string fn, string ln, string phone,
-        //         string addr, string email, ContactType type)
-        return Contact(id, firstName, lastName, phoneNumber, address, email, type);
+        //         string addr, string email, Contact::Type type)
+        return Contact(firstName, lastName, phoneNumber, address, email, type);
     }
 
     // -----------------------------
@@ -115,26 +114,26 @@ private:
     // -----------------------------
     // Type Conversion Helpers
     // -----------------------------
-    static string typeToString(ContactType type) {
+    static string typeToString(Contact::Type type) {
         switch (type) {
-        case ContactType::PERSON: return "PERSON";
-        case ContactType::BUSINESS: return "BUSINESS";
-        case ContactType::VENDOR: return "VENDOR";
-        case ContactType::EMERGENCY: return "EMERGENCY";
+        case Contact::Type::WORK: return "PERSON";
+        case Contact::Type::BUSINESS: return "BUSINESS";
+        case Contact::Type::VENDOR: return "VENDOR";
+        case Contact::Type::EMERGENCY: return "EMERGENCY";
         default: return "UNKNOWN";
         }
     }
 
-    static ContactType stringToType(const string& str) {
+    static Contact::Type stringToType(const string& str) {
         string s = str;
         for (auto& c : s) c = toupper(c);
 
-        if (s == "PERSON") return ContactType::PERSON;
-        if (s == "BUSINESS") return ContactType::BUSINESS;
-        if (s == "VENDOR") return ContactType::VENDOR;
-        if (s == "EMERGENCY") return ContactType::EMERGENCY;
+        if (s == "PERSONAL") return Contact::Type::PERSONAL;
+        if (s == "BUSINESS") return Contact::Type::BUSINESS;
+        if (s == "VENDOR") return Contact::Type::VENDOR;
+        if (s == "EMERGENCY") return Contact::Type::EMERGENCY;
 
         // Default fallback
-        return ContactType::PERSON;
+        return Contact::Type::PERSONAL;
     }
 };
