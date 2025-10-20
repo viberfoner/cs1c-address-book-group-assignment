@@ -1,11 +1,8 @@
-/*
-#include "Contact.cpp"
-#include "ContactList.cpp"
-#include "AdressBook.cpp"
+#include "AddressBook.cpp"
 
-*/
 
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
 #include <cstdlib>
@@ -30,6 +27,11 @@ void exitProgram();
 
 
 int main() {
+	AddressBook addressBook;
+
+	ifstream inFile;
+	inFile.open("address-book.csv");
+	inFile.close();
 
 	int response;
 	
@@ -83,6 +85,7 @@ void printPrompt(vector<Command> &cmdList) {
 	for (int i = 0; i < cmdList.size(); i++) {
 		cout << i+1 << ") " << cmdList[i].prompt << endl;
 	}
+	cout << endl;
 }
 
 void addContact() {

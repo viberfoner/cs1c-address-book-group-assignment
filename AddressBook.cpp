@@ -1,10 +1,16 @@
+#ifndef ADDRESSBOOK_H
+#define ADDRESSBOOK_H
+
 #include <vector>
 #include <string>
 #include <algorithm>
 
+#include "ContactList.h"
+#include "importExportManager"
+
 using namespace std;
 
-using ContactList = vector<Contact>;
+// using ContactList = vector<Contact>;
 
 // =============================================
 // CLASS: AddressBook
@@ -48,25 +54,27 @@ public:
     // -----------------------------
     
     void addContact(const Contact& c) {
-        contacts.push_back(c);
+        contacts.addContact(c);
     }
 
     
     void removeContact(int id) {
-        auto it = remove_if(contacts.begin(), contacts.end(),
+	contacts.removeContact(id);
+        /*auto it = remove_if(contacts.begin(), contacts.end(),
                             [&](const Contact& c) { return c.getId() == id; });
         contacts.erase(it, contacts.end());
+	*/
     }
 
     // -----------------------------
     // Get Contacts of a Specific Type
     // -----------------------------
     
-    ContactList getContactsOfType(ContactType type) const {
+    ContactList getContactsOfType(Contact::Type type) const {
         ContactList result;
-        for (const auto& c : contacts) {
+        for (const auto& c : contacts.getContacts()) {
             if (c.getType() == type)
-                result.push_back(c);
+                result.addContact(c);
         }
         return result;
     }
@@ -78,11 +86,11 @@ public:
     ContactList getContactGroup(const string& groupName) const {
         ContactList result;
         string key = toLower(groupName);
-        for (const auto& c : contacts) {
+        for (const auto& c : contacts.getContacts()) {
             const vector<string>& groups = c.getGroups();
             for (const auto& g : groups) {
                 if (toLower(g) == key) {
-                    result.push_back(c);
+                    result.addContact(c);
                     break;
                 }
             }
@@ -95,12 +103,14 @@ public:
     // -----------------------------
     
     void writeToCSV() const {
-        CsvWriter::writeCsv(csvPath, contacts);
+        //CsvWriter::writeCsv(csvPath, contacts);
+	cout << "ERROR: CSVWriter not implemented";
     }
 
 
     ContactList readFromCSV(const string& filePath) const {
-        return CsvWriter::readCsv(filePath);
+        //return CsvWriter::readCsv(filePath);
+	return ContactList();
     }
 
 private:
@@ -114,3 +124,5 @@ private:
         return s;
     }
 };
+
+#endif

@@ -3,11 +3,10 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
-using namespace std;
 
-// Forward declaration
-enum class ContactType;
-class Contact;
+#include "Contact.h"
+
+using namespace std;
 
 // =============================================
 // CLASS: ImportExportManager
@@ -90,12 +89,12 @@ private:
         getline(ss, typeStr, ',');
 
         unsigned int id = stoi(idStr);
-        ContactType type = stringToType(typeStr);
+        Contact::Type type = stringToType(typeStr);
 
         // Example constructor:
         // Contact(unsigned int id, string fn, string ln, string phone,
-        //         string addr, string email, ContactType type)
-        return Contact(id, firstName, lastName, phoneNumber, address, email, type);
+        //         string addr, string email, Contact::Type type)
+        return Contact(firstName, lastName, phoneNumber, address, email, type);
     }
 
     // -----------------------------

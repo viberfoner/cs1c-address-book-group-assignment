@@ -19,12 +19,12 @@ public:
 
     // Core functions
     void addContact(const Contact& contact);
-    void removeContact(unsigned int id);
+    void removeContact(int id);
     void clearContactList();
     void printContactList() const;
 
     // Filter by type (returns a new ContactList)
-    ContactList filter(const string& type) const;
+    ContactList filter(const Contact::Type type) const;
 
     // Optional helper
     const vector<Contact>& getContacts() const { return contacts; }

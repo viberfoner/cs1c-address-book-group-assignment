@@ -1,4 +1,4 @@
-#include "contact.h"
+#include "Contact.h"
 
 /*int id;
 std::string firstName;
@@ -57,32 +57,32 @@ void Contact::setEmail(std::string newEmail){
 void Contact::setType(Contact::Type newType){
     type = newType;
 }
-std::string Contact::getFirstName(){
+std::string Contact::getFirstName() const {
     return firstName;
 }
-std::string Contact::getLastName(){
+std::string Contact::getLastName() const {
     return lastName;
 }
-std::string Contact::getPhoneNumber(){
+std::string Contact::getPhoneNumber() const {
     return phoneNumber;
 }
-std::string Contact::getAddress(){
+std::string Contact::getAddress() const {
     return address;
 }
-std::string Contact::getEmail(){
+std::string Contact::getEmail() const {
     return email;
 }
-Contact::Type Contact::getType(){
+Contact::Type Contact::getType() const {
     return type;
 }
-int Contact::getId(){
+int Contact::getId() const {
     return id;
 }
 int Contact::incrementId(){
     idCount += 1;
     return idCount;
 }
-std::string Contact::typeToString(Contact::Type type){
+std::string Contact::typeToString(Contact::Type type) const {
     switch (type){
         case WORK: return "Work";
         case PERSONAL: return "Personal";
@@ -95,7 +95,7 @@ std::string Contact::typeToString(Contact::Type type){
     }
 return "Unknown";
 }
-void Contact::printContact(){
+void Contact::printContact() const {
     std::cout << firstName << " " << lastName << ":" << "\n";
     if (phoneNumber == " " && address == " " && email == " " && type == NONE && tags.empty()){
         std::cout << "No contact information\n\n";
@@ -118,7 +118,7 @@ void Contact::printContact(){
         std::cout << "\n\n";
     } 
 }
-std::string Contact::formatPhoneNumber(){
+std::string Contact::formatPhoneNumber() const {
     if (phoneNumber == " "){
         return "(000) 000-000";
     }
@@ -138,9 +138,9 @@ void Contact::deleteTag(std::string tag){
     std::vector<std::string>::iterator toDelete = find(tags.begin(), tags.end(), tag);
     tags.erase(toDelete);
 }
-std::vector<std::string> Contact::getTags(){
+std::vector<std::string> Contact::getTags() const {
     return tags;
 }
-std::vector<std::string> Contact::getGroups(){
+std::vector<std::string> Contact::getGroups() const {
     return groups;
 }

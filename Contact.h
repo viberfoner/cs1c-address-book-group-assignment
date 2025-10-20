@@ -19,22 +19,22 @@ class Contact{
         void setType(Type newType);
         void addTag(std::string tag);
         void deleteTag(std::string tag);
-        int getId();
-        std::string getFirstName();
-        std::string getLastName();
-        std::string getPhoneNumber();
-        std::string getAddress();
-        std::string getEmail();
-        Type getType();
+        int getId() const;
+        std::string getFirstName() const;
+        std::string getLastName() const;
+        std::string getPhoneNumber() const;
+        std::string getAddress() const;
+        std::string getEmail() const;
+        Type getType() const;
         static int incrementId();
-        std:: string typeToString(Type type);
-        void printContact();
-        std::vector<std::string> getTags();
-        std::vector<std::string> getGroups();
+        std::string typeToString(Type type) const;
+        void printContact() const;
+        std::vector<std::string> getTags() const;
+        std::vector<std::string> getGroups() const;
 
     private:
         static int idCount;
-        int id; 
+        unsigned int id; 
         std::string firstName;
         std::string lastName;
         std::string phoneNumber;
@@ -43,7 +43,7 @@ class Contact{
         Type type;
         std::vector<std::string> groups;
         std::vector<std::string> tags;
-        std::string formatPhoneNumber();
+        std::string formatPhoneNumber() const;
         
 };
 
