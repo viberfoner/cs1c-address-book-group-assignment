@@ -117,7 +117,11 @@ private:
     // -----------------------------
     static string typeToString(ContactType type) {
         switch (type) {
-        case ContactType::PERSON: return "PERSON";
+        case ContactType::WORK: return "WORK";
+        case ContactType::PERSONAL: return "PERSONAL";
+        case ContactType::SCHOOL: return "SCHOOL";
+        case ContactType::MISCELLANEOUS: return "MISCELLANEOUS";
+        case ContactType::NONE: return "NONE";
         case ContactType::BUSINESS: return "BUSINESS";
         case ContactType::VENDOR: return "VENDOR";
         case ContactType::EMERGENCY: return "EMERGENCY";
@@ -129,7 +133,11 @@ private:
         string s = str;
         for (auto& c : s) c = toupper(c);
 
-        if (s == "PERSON") return ContactType::PERSON;
+        if (s == "WORK") return ContactType::WORK;
+        if (s == "PERSONAL") return ContactType::PERSONAL;
+        if (s == "SCHOOL") return ContactType::SCHOOL;
+        if (s == "MISCELLANEOUS") return ContactType::MISCELLANEOUS;
+        if (s == "NONE") return ContactType::NONE;
         if (s == "BUSINESS") return ContactType::BUSINESS;
         if (s == "VENDOR") return ContactType::VENDOR;
         if (s == "EMERGENCY") return ContactType::EMERGENCY;
