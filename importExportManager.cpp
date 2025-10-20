@@ -114,26 +114,34 @@ private:
     // -----------------------------
     // Type Conversion Helpers
     // -----------------------------
-    static string typeToString(Contact::Type type) {
+    static string typeToString(ContactType type) {
         switch (type) {
-        case Contact::Type::WORK: return "PERSON";
-        case Contact::Type::BUSINESS: return "BUSINESS";
-        case Contact::Type::VENDOR: return "VENDOR";
-        case Contact::Type::EMERGENCY: return "EMERGENCY";
+        case ContactType::WORK: return "WORK";
+        case ContactType::PERSONAL: return "PERSONAL";
+        case ContactType::SCHOOL: return "SCHOOL";
+        case ContactType::MISCELLANEOUS: return "MISCELLANEOUS";
+        case ContactType::NONE: return "NONE";
+        case ContactType::BUSINESS: return "BUSINESS";
+        case ContactType::VENDOR: return "VENDOR";
+        case ContactType::EMERGENCY: return "EMERGENCY";
         default: return "UNKNOWN";
         }
     }
 
-    static Contact::Type stringToType(const string& str) {
+    static ContactType stringToType(const string& str) {
         string s = str;
         for (auto& c : s) c = toupper(c);
 
-        if (s == "PERSONAL") return Contact::Type::PERSONAL;
-        if (s == "BUSINESS") return Contact::Type::BUSINESS;
-        if (s == "VENDOR") return Contact::Type::VENDOR;
-        if (s == "EMERGENCY") return Contact::Type::EMERGENCY;
+        if (s == "WORK") return ContactType::WORK;
+        if (s == "PERSONAL") return ContactType::PERSONAL;
+        if (s == "SCHOOL") return ContactType::SCHOOL;
+        if (s == "MISCELLANEOUS") return ContactType::MISCELLANEOUS;
+        if (s == "NONE") return ContactType::NONE;
+        if (s == "BUSINESS") return ContactType::BUSINESS;
+        if (s == "VENDOR") return ContactType::VENDOR;
+        if (s == "EMERGENCY") return ContactType::EMERGENCY;
 
         // Default fallback
-        return Contact::Type::PERSONAL;
+        return ContactType::PERSON;
     }
 };
