@@ -4,7 +4,7 @@
 #include <sstream>
 #include <iostream>
 
-#include "Contact.h"
+#include "ContactList.h"
 
 using namespace std;
 
@@ -26,8 +26,8 @@ public:
     // -----------------------------
     // Reads all contacts from a CSV file and returns
     // them as a vector of Contact objects.
-    static vector<Contact> readCsv(const string& filename) {
-        vector<Contact> importedContacts;
+    static ContactList readCsv(const string& filename) {
+        ContactList importedContacts;
         ifstream file(filename);
 
         if (!file.is_open()) {
@@ -36,11 +36,20 @@ public:
         }
 
         string line;
+
+        // discard first line (header row)
+        getline(file, line);
+        // NOTE: to properly read a CSV with arbitrary header fields,
+        //   create a map or struct with a key of the data field name
+        //   and value with the data. This is useful incase the header
+        //   fields change so you don't have to rewrie parseContact()
+        //   to match. -Nick
+
         while (getline(file, line)) {
             if (line.empty()) continue;
 
             Contact c = parseContact(line);
-            importedContacts.push_back(c);
+            importedContacts.addContact(c);
         }
 
         file.close();
@@ -52,7 +61,7 @@ public:
     // Write Contacts to CSV
     // -----------------------------
     // Saves all contacts from memory into a CSV file.
-    static void writeCsv(const vector<Contact>& contacts, const string& filename) {
+    static void writeCsv(const ContactList& contactList, const string& filename) {
         ofstream file(filename);
 
         if (!file.is_open()) {
@@ -63,7 +72,7 @@ public:
         // Optional: Write a header row
         file << "id,firstName,lastName,phoneNumber,address,email,type\n";
 
-        for (const auto& c : contacts) {
+        for (const auto& c : contactList.getContacts()) {
             file << formatContact(c) << "\n";
         }
 
@@ -87,7 +96,7 @@ private:
         getline(ss, address, ',');
         getline(ss, email, ',');
         getline(ss, typeStr, ',');
-
+        
         unsigned int id = stoi(idStr);
         Contact::Type type = stringToType(typeStr);
 
@@ -114,34 +123,34 @@ private:
     // -----------------------------
     // Type Conversion Helpers
     // -----------------------------
-    static string typeToString(ContactType type) {
+    static string typeToString(Contact::Type type) {
         switch (type) {
-        case ContactType::WORK: return "WORK";
-        case ContactType::PERSONAL: return "PERSONAL";
-        case ContactType::SCHOOL: return "SCHOOL";
-        case ContactType::MISCELLANEOUS: return "MISCELLANEOUS";
-        case ContactType::NONE: return "NONE";
-        case ContactType::BUSINESS: return "BUSINESS";
-        case ContactType::VENDOR: return "VENDOR";
-        case ContactType::EMERGENCY: return "EMERGENCY";
+        case Contact::Type::WORK: return "WORK";
+        case Contact::Type::PERSONAL: return "PERSONAL";
+        case Contact::Type::SCHOOL: return "SCHOOL";
+        case Contact::Type::MISCELLANEOUS: return "MISCELLANEOUS";
+        case Contact::Type::NONE: return "NONE";
+        case Contact::Type::BUSINESS: return "BUSINESS";
+        case Contact::Type::VENDOR: return "VENDOR";
+        case Contact::Type::EMERGENCY: return "EMERGENCY";
         default: return "UNKNOWN";
         }
     }
 
-    static ContactType stringToType(const string& str) {
+    static Contact::Type stringToType(const string& str) {
         string s = str;
         for (auto& c : s) c = toupper(c);
 
-        if (s == "WORK") return ContactType::WORK;
-        if (s == "PERSONAL") return ContactType::PERSONAL;
-        if (s == "SCHOOL") return ContactType::SCHOOL;
-        if (s == "MISCELLANEOUS") return ContactType::MISCELLANEOUS;
-        if (s == "NONE") return ContactType::NONE;
-        if (s == "BUSINESS") return ContactType::BUSINESS;
-        if (s == "VENDOR") return ContactType::VENDOR;
-        if (s == "EMERGENCY") return ContactType::EMERGENCY;
+        if (s == "WORK") return Contact::Type::WORK;
+        if (s == "PERSONAL") return Contact::Type::PERSONAL;
+        if (s == "SCHOOL") return Contact::Type::SCHOOL;
+        if (s == "MISCELLANEOUS") return Contact::Type::MISCELLANEOUS;
+        if (s == "NONE") return Contact::Type::NONE;
+        if (s == "BUSINESS") return Contact::Type::BUSINESS;
+        if (s == "VENDOR") return Contact::Type::VENDOR;
+        if (s == "EMERGENCY") return Contact::Type::EMERGENCY;
 
         // Default fallback
-        return ContactType::PERSON;
+        return Contact::Type::PERSONAL;
     }
 };
