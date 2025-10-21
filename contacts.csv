@@ -1,0 +1,3 @@
+id,firstName,lastName,phoneNumber,address,email,type
+1,Nick,VanAmburg,,,,WORK
+2,,,,,,WORK

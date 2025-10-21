@@ -1,0 +1,5 @@
+id,firstName,lastName,phoneNumber,address,email,type
+1,No,Name, , , ,NONE
+2,No,Name, , , ,NONE
+3,nick,vanamburg,5555555555, , ,NONE
+4,Nick,VanAmburg,5555555555,nick.com,,MISCELLANEOUS

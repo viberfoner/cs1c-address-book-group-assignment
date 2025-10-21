@@ -6,7 +6,7 @@
 #include <algorithm>
 
 #include "ContactList.h"
-#include "importExportManager"
+#include "importExportManager.cpp"
 
 using namespace std;
 
@@ -97,20 +97,20 @@ public:
         }
         return result;
     }
+    
+    
 
     // -----------------------------
     // CSV I/O
     // -----------------------------
     
-    void writeToCSV() const {
-        //CsvWriter::writeCsv(csvPath, contacts);
-	cout << "ERROR: CSVWriter not implemented";
+    void writeToCSV(const string& filePath) const {
+        ImportExportManager::writeCsv(contacts, filePath);
     }
 
 
-    ContactList readFromCSV(const string& filePath) const {
-        //return CsvWriter::readCsv(filePath);
-	return ContactList();
+    void readFromCSV(const string& filePath) {
+        contacts = ImportExportManager::readCsv(filePath);
     }
 
 private:
